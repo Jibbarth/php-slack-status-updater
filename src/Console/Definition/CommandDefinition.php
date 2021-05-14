@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Barth\SlackUpdater\Command\Definition;
+namespace Barth\SlackUpdater\Console\Definition;
 
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;

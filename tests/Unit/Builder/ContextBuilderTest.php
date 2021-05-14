@@ -1,7 +1,7 @@
 <?php
 
 use Barth\SlackUpdater\Builder\ContextBuilder;
-use Barth\SlackUpdater\Command\Definition\CommandDefinition;
+use Barth\SlackUpdater\Console\Definition\CommandDefinition;
 use Barth\SlackUpdater\Repository\EmojiRepository;
 use Symfony\Component\Console\Input\ArrayInput;
 

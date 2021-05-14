@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Barth\SlackUpdater\Slack;
 
-use JoliCode\Slack\Api\Client;
+use JoliCode\Slack\Client;
 
 /**
  * Mark presence or not on slack.

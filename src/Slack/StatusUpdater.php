@@ -12,7 +12,7 @@ use function Symfony\Component\String\u;
  * Required scopes:
  * - users.profile:write
  */
-final class StatusUpdater
+final class StatusUpdater implements StatusUpdaterInterface
 {
     public function __construct(private Client $client) {
     }

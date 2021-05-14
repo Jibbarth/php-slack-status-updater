@@ -14,12 +14,13 @@
     },
     "require": {
         "php": "^8.0",
+        "jolicode/slack-php-api": "^4.2",
+        "nyholm/psr7": "^1.4",
+        "symfony/config": "^5.2",
         "symfony/console": "^5.2",
         "symfony/dependency-injection": "^5.2",
         "symfony/http-client": "^5.2",
-        "jolicode/slack-php-api": "^4.2",
         "symfony/process": "^5.2",
-        "nyholm/psr7": "^1.4",
         "symfony/string": "^5.2"
     },
     "require-dev": {
