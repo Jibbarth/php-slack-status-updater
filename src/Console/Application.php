@@ -12,11 +12,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class Application extends BaseApp
 {
+    public const NAME = 'Slack Status Updater';
     private const VERSION = '1.0.0';
 
     public function __construct(private ContainerBuilder $containerBuilder)
     {
-        parent::__construct('Slack Status Updater', self::VERSION);
+        parent::__construct(self::NAME, self::VERSION);
     }
 
     /**

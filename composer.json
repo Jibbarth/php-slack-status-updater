@@ -15,6 +15,7 @@
     "require": {
         "php": "^8.0",
         "jolicode/slack-php-api": "^4.2",
+        "loilo/storage-paths": "^1.0",
         "nyholm/psr7": "^1.4",
         "symfony/config": "^5.2",
         "symfony/console": "^5.2",
