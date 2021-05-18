@@ -33,6 +33,10 @@ final class ContextBuilder
             return $input->getOption('emoji');
         }
 
+        if (!$input->hasOption('type')) {
+            return '';
+        }
+
         $emojiList = match ($input->getOption('type')) {
             'active' => $this->emojiRepository->getPresenceEmojis()->getArrayCopy(),
             'away' => $this->emojiRepository->getAwayEmojis()->getArrayCopy(),

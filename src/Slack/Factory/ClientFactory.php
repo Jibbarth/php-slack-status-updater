@@ -14,6 +14,8 @@ final class ClientFactory
 
     public function create(): Client
     {
-        return \JoliCode\Slack\ClientFactory::create($this->configStorage->getConfig()->getSlackToken());
+        return \JoliCode\Slack\ClientFactory::create(
+            $this->configStorage->getConfig()->getSlackToken()
+        );
     }
 }
