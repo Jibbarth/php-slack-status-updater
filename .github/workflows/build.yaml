@@ -1,0 +1,32 @@
+on:
+  pull_request: ~
+  push:
+    branches:
+      - main
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php: ['8.0']
+        composer-version: [ v2 ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, mbstring, zip, xml
+          coverage: none
+          tools: composer:${{ matrix.composer-version }}
+
+      - name: Install Composer dependencies
+        run: composer update --ansi --no-interaction --prefer-dist
+        working-directory: source
+      - name: Unit Tests
+        run: vendor/bin/pest --color=always
+        working-directory: source
