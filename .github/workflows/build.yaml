@@ -1,3 +1,5 @@
+name: 'Build'
+
 on:
   pull_request: ~
   push:
@@ -24,9 +26,13 @@ jobs:
           coverage: none
           tools: composer:${{ matrix.composer-version }}
 
-      - name: Install Composer dependencies
+      - name: Install Composer dependencies in source repository
         run: composer update --ansi --no-interaction --prefer-dist
         working-directory: source
       - name: Unit Tests
-        run: vendor/bin/pest --color=always
+        run: vendor/bin/pest --group=unit --color=always
         working-directory: source
+      - name: Install Composer dependencies
+        run: composer update --ansi --no-interaction --prefer-dist
+      - name: Assert can compile
+        run: composer compile
