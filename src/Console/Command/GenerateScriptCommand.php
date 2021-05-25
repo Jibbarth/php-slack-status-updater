@@ -4,31 +4,24 @@ declare(strict_types=1);
 
 namespace Barth\SlackUpdater\Console\Command;
 
-use Barth\SlackUpdater\Builder\ContextBuilder;
-use Barth\SlackUpdater\Console\Application;
 use Barth\SlackUpdater\Console\Definition\CommandDefinition;
+use Barth\SlackUpdater\Exception\NotImplementedYet;
 use Barth\SlackUpdater\Generator\ScriptGeneratorHandler;
-use Loilo\StoragePaths\StoragePaths;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use function Symfony\Component\String\u;
 
 final class GenerateScriptCommand extends Command
 {
     protected static $defaultName = 'generate-script';
 
-    private string $dataPath;
 
     public function __construct(
         private ScriptGeneratorHandler $scriptGenerator,
     ) {
-        $paths = StoragePaths::for(u(Application::NAME)->snake()->toString());
-        $this->dataPath = $paths->data();
-
         parent::__construct(self::$defaultName);
     }
 
@@ -86,7 +79,21 @@ final class GenerateScriptCommand extends Command
             $options['custom_message'] = $input->getOption('message');
         }
 
-        $filenames = $this->scriptGenerator->generate($commandName, $options);
+        try {
+            $filenames = $this->scriptGenerator->generate($commandName, $options);
+        } catch (NotImplementedYet $exception) {
+            $output->writeln([
+                '',
+                '  <bg=red;fg=white;options=bold> Not implemented yet </>',
+                '',
+                '    <fg=red>•</> ' . $exception->getMessage(),
+                '',
+                '    <fg=blue>•</> Want to help ? Send a <href=https://github.com/Jibbarth/php-slack-status-updater>pull request</>',
+                '',
+            ]);
+
+            return Command::FAILURE;
+        }
 
         $output->writeln([
             '',
@@ -107,6 +114,8 @@ final class GenerateScriptCommand extends Command
                 '    <fg=blue>•</> ' . $filename,
             ]);
         });
+
+        $output->writeln('');
 
         return Command::SUCCESS;
     }

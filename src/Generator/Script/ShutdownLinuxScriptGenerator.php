@@ -6,15 +6,19 @@ namespace Barth\SlackUpdater\Generator\Script;
 
 use Barth\SlackUpdater\Console\Application;
 use Barth\SlackUpdater\Generator\ScriptGeneratorInterface;
+use Barth\SlackUpdater\Provider\BinaryPathProvider;
 use Loilo\StoragePaths\StoragePaths;
 use function Symfony\Component\String\u;
 
 final class ShutdownLinuxScriptGenerator implements ScriptGeneratorInterface
 {
+    public function __construct(private BinaryPathProvider $binaryPathProvider) {
+    }
+
     public function generate(string $commandName, array $options): string
     {
-        $rootDir = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'bin';
-        $binary = 'slack-status-updater';
+
+        $binaryPath = $this->binaryPathProvider->get();
 
         $customOptions = '';
         if (array_key_exists('custom_message', $options)) {
@@ -30,7 +34,7 @@ final class ShutdownLinuxScriptGenerator implements ScriptGeneratorInterface
 Name=Slack status updater - Shutdown
 GenericName=Slack status updater - Shutdown
 Comment=Prevent slack workspace that you are off
-Exec=/bin/sh -c 'trap "php $rootDir/$binary $commandName $customOptions"  0 1 2 3 15; sleep infinity'
+Exec=/bin/sh -c 'trap "php $binaryPath $commandName $customOptions"  0 1 2 3 15; sleep infinity'
 Terminal=false
 Type=Application
 X-GNOME-Autostart-enabled=true

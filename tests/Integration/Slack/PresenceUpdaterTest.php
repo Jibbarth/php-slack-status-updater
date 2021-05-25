@@ -18,7 +18,7 @@ it('mark present', function () {
     $currentPresence = $this->slackClient->usersGetPresence()->getPresence();
 
     expect($currentPresence)->toBe('active');
-});
+})->skip();
 
 it('mark away', function () {
     $service = new PresenceUpdater($this->slackClient);
