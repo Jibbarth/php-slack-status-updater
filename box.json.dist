@@ -1,7 +1,7 @@
 {
     "chmod": "0700",
     "base-path": "source",
-    "output": "../bin/slack-status-updater.phar",
+    "output": "../slack-status-updater.phar",
     "main": "bin/slack-status-updater",
     "force-autodiscovery": true,
     "compression": "GZ",
