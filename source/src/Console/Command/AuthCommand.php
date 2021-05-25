@@ -47,6 +47,7 @@ final class AuthCommand extends Command
         $output->writeln([
             '',
             '  <bg=green;fg=black;options=bold> Configuration updated. </>',
+            '',
             '    <fg=blue>•</> Next steps, launch <options=bold>wakeup</> or <options=bold>shutdown</> to see how slack is updated',
             '',
         ]);

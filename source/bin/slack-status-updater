@@ -1,0 +1,21 @@
+#! /usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require file_exists(__DIR__ . '/../vendor/autoload.php')
+    ? __DIR__ . '/../vendor/autoload.php'
+    : __DIR__ . '/../../../../vendor/autoload.php';
+
+use Barth\SlackUpdater\Console\Application;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+
+$containerBuilder = new ContainerBuilder();
+$loader = new PhpFileLoader($containerBuilder, new FileLocator(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config'));
+$loader->load('services.php');
+$containerBuilder->addCompilerPass(new \Symfony\Component\Console\DependencyInjection\AddConsoleCommandPass());
+
+
+(new Application($containerBuilder))->run();
