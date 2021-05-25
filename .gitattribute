@@ -1,0 +1,5 @@
+* text=auto
+CHANGELOG.md export-ignore
+README.md export-ignore
+.github export-ignore
+source export-ignore
