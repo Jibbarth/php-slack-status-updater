@@ -1,0 +1,28 @@
+{
+    "name": "barth/php-slack-status-updater",
+    "description": "Allow you to update your slack status",
+    "authors": [
+        {
+            "name": "Jibé Barth",
+            "email": "barth.jib@gmail.com"
+        }
+    ],
+    "type": "library",
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist"
+    },
+    "bin": [
+        "bin/slack-status-updater",
+        "bin/slack-status-updater.phar"
+    ],
+    "require-dev": {
+        "humbug/box": "^3.13"
+    },
+    "scripts": {
+        "compile": "box compile",
+        "gpg-sign": "gpg -u barth.jib@gmail.com --detach-sign --output bin/slack-status-updater.phar.asc bin/slack-status-updater.phar"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+declare (strict_types=1);
+
+\Phar::loadPhar(__DIR__ . '/slack-status-updater.phar', 'slack-status-updater.phar');
+
+require 'phar://slack-status-updater.phar/bin/slack-status-updater';
